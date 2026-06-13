@@ -114,4 +114,38 @@ async function handleLeveling(message, client) {
   }
 }
 
+export default {
+  name: 'messageCreate',
+  async execute(message, client) {
+    // Ignore bots
+    if (message.author.bot) return;
+
+    const PREFIX = '!'; // Change this to your prefix
+
+    // Ignore messages without prefix
+    if (!message.content.startsWith(PREFIX)) return;
+
+    // Parse command and arguments
+    const args = message.content.slice(PREFIX.length).trim().split(/ +/);
+    const commandName = args.shift().toLowerCase();
+
+    // ===== YOUR COMMANDS =====
+
+    if (commandName === 'ping') {
+      return message.reply('🏓 Pong!');
+    }
+
+    if (commandName === 'hello') {
+      return message.reply(`👋 Hey ${message.author.username}!`);
+    }
+
+    if (commandName === 'info') {
+      return message.reply(`🤖 I'm **Scythe Bot** — use \`/\` for slash commands or \`${PREFIX}\` for prefix commands!`);
+    }
+
+    // ===========================
+  }
+};
+
+
 
